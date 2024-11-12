@@ -2,6 +2,7 @@
 
 This repository contains the backend services for **DJ Condescension**, providing the necessary API endpoint for Eleven Labs.
 It is a very simple backend, but necessary for one of the core functionalities of the app.
+[**Client Repo**](https://github.com/tjaung/DJCondescension/tree/main)
 
 ## Features
 - **Eleven Labs REST API**: Gets Eleven Labs audio and sends the binary back to the client
