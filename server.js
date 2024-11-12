@@ -6,13 +6,15 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors({
-    origin: ['http://localhost:5173'], // Allow only the frontend
-    methods: 'GET,POST,OPTIONS',
-    allowedHeaders: ['Content-Type', 'Authorization', 'xi-api-key'],
-    credentials: true,
-    optionsSuccessStatus: 200,
-}));
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, xi-api-key');
+    if (req.method === 'OPTIONS') {
+      return res.status(200).end();
+    }
+    next();
+  });
 
 // Handle preflight requests globally for all routes
 app.options('*', cors());
@@ -55,4 +57,6 @@ app.post('/generateTTS', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+module.exports = app;
