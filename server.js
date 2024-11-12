@@ -23,6 +23,10 @@ const ELEVEN_LABS_API_KEY = process.env.VITE_ELEVEN_LABS_API_KEY;
 const ELEVEN_VOICE_ID = process.env.VITE_ELEVEN_LABS_VOICE_ID
 const ELEVEN_LABS_URI = process.env.VITE_ELEVEN_LABS_URI
 
+app.use("/", (req, res) => {
+    res.send("server is running")
+})
+
 // Endpoint to generate TTS audio
 app.post('/generateTTS', async (req, res) => {
     const { text } = req.body;
