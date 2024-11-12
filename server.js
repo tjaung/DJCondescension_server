@@ -53,7 +53,7 @@ app.post('/generateTTS', async (req, res) => {
     res.setHeader('Content-Type', 'audio/mpeg');
     res.send(response.data);
   } catch (error) {
-    console.error('Error generating TTS:', error.response ? error.response.data : error.message);
+    console.error('Error generating TTS:', error);
     res.status(500).json({ error: 'Failed to generate TTS audio' });
   }
 });
