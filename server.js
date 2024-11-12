@@ -20,10 +20,10 @@ app.use((req, res, next) => {
 app.options('*', cors());
 
 app.use(express.json()); // Parse JSON bodies
-
-const ELEVEN_LABS_API_KEY = process.env.VITE_ELEVEN_LABS_API_KEY;
-const ELEVEN_VOICE_ID = process.env.VITE_ELEVEN_LABS_VOICE_ID;
-const ELEVEN_LABS_URI = process.env.VITE_ELEVEN_LABS_URI;
+const PORT = process.env.PORT
+const ELEVEN_LABS_API_KEY = process.env.ELEVEN_LABS_API_KEY;
+const ELEVEN_VOICE_ID = process.env.ELEVEN_LABS_VOICE_ID;
+const ELEVEN_LABS_URI = process.env.ELEVEN_LABS_URI;
 
 // Test endpoint
 app.get("/", (req, res) => {
@@ -57,6 +57,7 @@ app.post('/generateTTS', async (req, res) => {
     res.status(500).json({ error: 'Failed to generate TTS audio' });
   }
 });
+app.listen(PORT, console.log(`Listening on port ${PORT}`))
 
 // Vercel requires exporting the app
 module.exports = app;
