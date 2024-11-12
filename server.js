@@ -34,6 +34,10 @@ app.get("/", (req, res) => {
 app.post('/generateTTS', async (req, res) => {
   const { text } = req.body;
   console.log(text);
+  if (!ELEVEN_LABS_URI || !ELEVEN_VOICE_ID || !ELEVEN_LABS_API_KEY) {
+    console.error("Missing environment variables");
+    return res.status(500).json({ error: 'Missing environment variables' });
+}
   try {
     const response = await axios.post(
       `${ELEVEN_LABS_URI}/${ELEVEN_VOICE_ID}`,
